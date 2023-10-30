@@ -9,8 +9,11 @@ export default defineConfig({
     vue(),
   ],
   resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+    alias: 
+      {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        find: './runtimeConfig',
+        replacement: './runtimeConfig.browser'// ensures browser compatible version of AWS JS SDK is used
+      }
   }
 })
