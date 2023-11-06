@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import WelcomeItem from './WelcomeItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
 import ToolingIcon from './icons/IconTooling.vue'
@@ -85,4 +85,53 @@ import SupportIcon from './icons/IconSupport.vue'
     us by
     <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
   </WelcomeItem>
+</template> -->
+
+
+<script setup>
+import EventRow from './EventRow.vue'
+import EventCard from './EventCard.vue'
+import SearchBar from './SearchBar.vue'; // Make sure the path matches your file structure
+
+</script>
+
+<template>
+  <div>
+    <SearchBar @onSearch="handleSearch" />
+    <!-- Your other template content -->
+  </div>
+  <!-- Event Category Row Example -->
+  <EventRow category="Recently Added">
+    <!-- Event cards within the row -->
+    <EventCard 
+      v-for="event in recentlyAddedEvents" 
+      :key="event.id" 
+      :event="event"
+    />
+  </EventRow>
+
+  <EventRow category="Music Events">
+    <EventCard 
+      v-for="event in musicEvents" 
+      :key="event.id" 
+      :event="event"
+    />
+  </EventRow>
+
+  <EventRow category="Sports Events">
+    <EventCard 
+      v-for="event in sportsEvents" 
+      :key="event.id" 
+      :event="event"
+    />
+  </EventRow>
+
+  <!-- Add more categories as needed -->
+
+  <!-- You can also add a section for continued watching or trending events -->
 </template>
+
+<style>
+/* Style your components with CSS to match the Netflix visual theme */
+</style>
+
