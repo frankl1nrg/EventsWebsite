@@ -91,15 +91,11 @@ import SupportIcon from './icons/IconSupport.vue'
 <script setup>
 import EventRow from './EventRow.vue'
 import EventCard from './EventCard.vue'
-import SearchBar from './SearchBar.vue'; // Make sure the path matches your file structure
 
 </script>
 
 <template>
-  <div>
-    <SearchBar @onSearch="handleSearch" />
-    <!-- Your other template content -->
-  </div>
+  <div id="Events">
   <!-- Event Category Row Example -->
   <EventRow category="Recently Added">
     <!-- Event cards within the row -->
@@ -127,11 +123,26 @@ import SearchBar from './SearchBar.vue'; // Make sure the path matches your file
   </EventRow>
 
   <!-- Add more categories as needed -->
-
+  </div>
   <!-- You can also add a section for continued watching or trending events -->
 </template>
 
 <style>
 /* Style your components with CSS to match the Netflix visual theme */
+
+#Events {
+  /* Add styles for the Events component */
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#Events > * {
+  margin-bottom: 40px;
+}
+
 </style>
 
