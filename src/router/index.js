@@ -1,29 +1,55 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomePage from '../views/HomePage.vue'
+import LoginPage from '../views/LoginPage.vue'
+import CreateEvent from '../views/CreateEvent.vue'
+import EditEvent from '../views/EditEvent.vue'
+import EventInfo from '../views/EventInfo.vue'
+import MyEvents from '../views/MyEvents.vue'
+import MyReservations from '../views/MyReservations.vue'
+import SearchResults from '../views/SearchResults.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      name: 'Home',
+      component: HomePage
     },
     {
       path: '/login',
-      name: 'login',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/LogInPage.vue')
+      name: 'Login',
+      component: LoginPage
+    },
+    {
+      path: '/createEvent',
+      name: 'Create Event',
+      component: CreateEvent
+    },
+    {
+      path: '/editEvent',
+      name: 'Edit Event',
+      component: EditEvent
+    },
+    {
+      path: '/eventInfo',
+      name: 'Event Info',
+      component: EventInfo
+    },
+    {
+      path: '/myEvents',
+      name: 'My Events',
+      component: MyEvents
+    },
+    {
+      path: '/myReservations',
+      name: 'My Reservations',
+      component: MyReservations
+    },
+    {
+      path: '/searchResults',
+      name: 'Search Results',
+      component: SearchResults
     }
   ]
 })
