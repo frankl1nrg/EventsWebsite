@@ -30,16 +30,4 @@ export default {
 </script>
 
 <style>
-/* Add styling for your search bar here */
-.search-bar {
-  /* Style your search bar container */
-}
-
-.search-input {
-  /* Style your search input field */
-}
-
-.search-button {
-  /* Style your search button */
-}
 </style>
