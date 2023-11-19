@@ -1,5 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router';
+import TopBar from '../src/components/header/TopBar.vue';
 
 </script>
 
@@ -17,6 +18,7 @@ import { RouterView } from 'vue-router';
         <UserMenuItems/>
       </UserMenu>
     </nav> -->
+    <TopBar/>
   </header>
   <body>
     <RouterView />
