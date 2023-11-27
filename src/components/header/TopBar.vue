@@ -23,13 +23,12 @@ import UserMenu from './UserMenu.vue';
 
 <style>
 #Button{
-    margin-top: 20px;
+    margin-top: 40px;
     background-color: rgb(28, 40, 51);
     color: white;
     padding: 5px;
     height: 30px;
     border-radius: 10px;
-    float: right;
 }
 
 #Top{
