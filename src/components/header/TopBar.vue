@@ -48,7 +48,6 @@ import UserMenu from './UserMenu.vue';
     padding: 5px;
     height: 50px;
     border-radius: 10px;
-    width: 100%;
 }
 
 #Logo{
