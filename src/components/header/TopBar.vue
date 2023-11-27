@@ -1,14 +1,13 @@
 <script>
     import SearchBar from './SearchBar.vue';
     import UserMenu from './UserMenu.vue';
+    
 </script>
 
 <template>
     <div id = "Top">
         <div id = "Left">
-            <v-btn id = "Logo">
-            TicketPort
-            </v-btn>
+            <button id = "Logo" onclick="window.location.href='/'">TicketPort</button>
         </div>
         <div id = "Center">
             <SearchBar/>
