@@ -13,59 +13,58 @@ import UserMenu from './UserMenu.vue';
             <SearchBar/>
         </div>
         <div id = "Right">
+            <UserMenu/>
             <button id = "Button">
                 Logout
             </button>
-            <UserMenu/>
         </div>
     </div>
 </template>
 
 <style>
+    #Button{
+        background-color: rgb(28, 40, 51);
+        color: white;
+        padding: 5px;
+        height: 30px;
+        border-radius: 10px;
+        float: right;
+    }
 
-#Button{
-    background-color: rgb(28, 40, 51);
-    color: white;
-    padding: 5px;
-    height: 30px;
-    border-radius: 10px;
-    float: right;
-}
+    #Top{
+        background-color: rgb(61, 93, 133);
+        color: white;
+        padding: 5px;
+        height: 50px;
+        border-radius: 10px;
+    }
 
-#Top{
-    background-color: rgb(61, 93, 133);
-    color: white;
-    padding: 5px;
-    height: 50px;
-    border-radius: 10px;
-}
+    #Logo{
+        border-width: 0px;
+        font-size: 2em;
+        padding-right: 25px;
+        background-color: rgb(61, 93, 133);
+        color: white;
+        padding: 5px;
+        height: 30px;
+        border-radius: 10px;
+    }
 
-#Logo{
-    border-width: 0px;
-    font-size: 2em;
-    padding-right: 25px;
-    background-color: rgb(61, 93, 133);
-    color: white;
-    padding: 5px;
-    height: 30px;
-    border-radius: 10px;
-}
+    #Left{
+        float:left;
+    }
 
-#Left{
-    float:left;
-}
+    #Center{
+        display: flex;
+        margin-top: 10px;
+        width: auto;
+        align-items: center;
+        justify-content: center;
+    }
 
-#Center{
-    display: flex;
-    margin-top: 10px;
-    width: auto;
-    align-items: center;
-    justify-content: center;
-}
-
-#Right{
-    margin-top: -30px;
-    float: right;
-    width: 200px;
-}
+    #Right{
+        margin-top: -30px;
+        float: right;
+        width: 200px;
+    }
 </style>
