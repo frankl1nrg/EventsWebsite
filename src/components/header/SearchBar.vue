@@ -30,4 +30,7 @@ export default {
 </script>
 
 <style>
+  div{
+    color: white;
+  }
 </style>

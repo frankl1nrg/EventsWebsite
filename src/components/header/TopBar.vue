@@ -30,7 +30,7 @@
         height: 30px;
         border-radius: 10px;
         float: right;
-        margin-top: 25px;
+        margin-top: 30px;
     }
 
     #Top{
