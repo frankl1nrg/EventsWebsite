@@ -23,14 +23,17 @@ import UserMenu from './UserMenu.vue';
 
 <style>
 #Button{
+    margin-top: 20px;
     background-color: rgb(28, 40, 51);
     color: white;
     padding: 5px;
     height: 30px;
     border-radius: 10px;
+    float: right;
 }
 
 #Top{
+    display: flex;
     background-color: rgb(61, 93, 133);
     color: white;
     padding: 5px;
@@ -54,7 +57,7 @@ import UserMenu from './UserMenu.vue';
 }
 
 #Center{
-    display: flex;
+    float: center;
     margin-top: 10px;
     width: auto;
     align-items: center;
