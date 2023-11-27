@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router';
-import TopBar from '../src/components/header/TopBar.vue';
+import TopBar from './components/header/TopBar.vue';
 
 </script>
 

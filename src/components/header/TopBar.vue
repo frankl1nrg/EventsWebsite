@@ -1,6 +1,6 @@
 <script>
-    import SearchBar from '../header/SearchBar.vue';
-    import UserMenu from '../header/UserMenu.vue';
+    import SearchBar from './SearchBar.vue';
+    import UserMenu from './UserMenu.vue';
 </script>
 
 <template>
@@ -30,7 +30,7 @@
         height: 30px;
         border-radius: 10px;
         float: right;
-        margin-top: 30px;
+        margin-top: 25px;
     }
 
     #Top{
@@ -47,6 +47,7 @@
         padding-right: 25px;
         background-color: rgb(61, 93, 133);
         color: white;
+        margin-top: -10px;
         padding: 5px;
         height: 30px;
         border-radius: 10px;
