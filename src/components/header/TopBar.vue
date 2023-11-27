@@ -5,7 +5,7 @@ import UserMenu from './UserMenu.vue';
 <template>
     <div id = "Top">
         <div id = "Left">
-            <button id = "Logo" class = "top">
+            <button id = "Logo">
                 TicketPort
             </button>
         </div>
@@ -13,28 +13,16 @@ import UserMenu from './UserMenu.vue';
             <SearchBar/>
         </div>
         <div id = "Right">
-            <button class = "top button login">
+            <UserMenu/>
+            <button id = "Button">
                 Logout
             </button>
-            <UserMenu/>
         </div>
     </div>
 </template>
 
 <style>
-.login{
-    float: right;
-}
-
-.top{
-    background-color: rgb(61, 93, 133);
-    color: white;
-    padding: 5px;
-    height: 30px;
-    border-radius: 10px;
-}
-
-.button{
+#Button{
     background-color: rgb(28, 40, 51);
     color: white;
     padding: 5px;
@@ -53,7 +41,12 @@ import UserMenu from './UserMenu.vue';
 #Logo{
     border-width: 0px;
     font-size: 2em;
+    background-color: rgb(61, 93, 133);
+    color: white;
+    padding: 5px;
+    height: 30px;
     padding-right: 25px;
+    border-radius: 10px;
 }
 
 #Left{
