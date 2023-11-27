@@ -29,6 +29,7 @@ import UserMenu from './UserMenu.vue';
         height: 30px;
         border-radius: 10px;
         float: right;
+        margin-top: 40px;
     }
 
     #Top{
