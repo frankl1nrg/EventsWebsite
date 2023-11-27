@@ -6,9 +6,9 @@
 <template>
     <div id = "Top">
         <div id = "Left">
-            <button id = "Logo" class = "top">
-                TicketPort
-            </button>
+            <v-btn id = "Logo">
+            TicketPort
+            </v-btn>
         </div>
         <div id = "Center">
             <SearchBar/>
@@ -30,7 +30,7 @@
         height: 30px;
         border-radius: 10px;
         float: right;
-        margin-top: 20px;
+        margin-top: 25px;
     }
 
     #Top{
@@ -39,7 +39,6 @@
         padding: 5px;
         height: 50px;
         border-radius: 10px;
-        margin-top: -20px;
     }
 
     #Logo{
