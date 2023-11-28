@@ -46,7 +46,7 @@
         padding-right: 25px;
         background-color: rgb(61, 93, 133);
         color: white;
-        margin-top: -10px;
+        margin-top: -5px;
         padding: 5px;
         height: 30px;
         border-radius: 10px;
