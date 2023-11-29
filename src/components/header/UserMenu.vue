@@ -1,17 +1,28 @@
-<script>
-
-</script>
+<script></script>
 
 <template>
-  <div>
-    <b-dropdown id="Profile" text="Profile" class="m-md-2">
-      <b-dropdown-item>New Event</b-dropdown-item>
-      <b-dropdown-item>My Events</b-dropdown-item>
-      <b-dropdown-item>My Reservations</b-dropdown-item>
-    </b-dropdown>
-  </div>
+  <select class="top">
+    <option value="profile">
+      Profile
+    </option>
+    <option value="newEvent">
+      New Event
+    </option>
+    <option value="myEvents">
+      My Events
+    </option>
+    <option value="myReservations">
+      My Reservations
+    </option>
+  </select>
 </template>
 
 <style>
-
+  .top {
+    background-color: rgb(28, 40, 51);
+    color: white;
+    padding: 5px;
+    height: 30px;
+    border-radius: 10px;
+  }
 </style>
