@@ -1,4 +1,4 @@
-<script>
+<script setup>
     import SearchBar from './SearchBar.vue';
     import UserMenu from './UserMenu.vue';
     
@@ -10,10 +10,10 @@
             <button id = "Logo" onclick="window.location.href='/'">TicketPort</button>
         </div>
         <div id = "Center">
-            <SearchBar></SearchBar>
+            <SearchBar/>
         </div>
         <div id = "Right">
-            <UserMenu></UserMenu>
+            <UserMenu/>
             <button id = "Button">
                 Logout
             </button>
