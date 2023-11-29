@@ -1,21 +1,23 @@
-<script></script>
-
 <template>
   <select class="top">
     <option value="profile">
       Profile
     </option>
-    <option value="newEvent">
-      New Event
+    <option onclick="window.location.href='/createEvent'" value="newEvent">
+      Create Event
     </option>
-    <option value="myEvents">
+    <option onclick="window.location.href='/myEvents'" value="myEvents">
       My Events
     </option>
-    <option value="myReservations">
+    <option onclick="window.location.href='/myReservations'" value="myReservations">
       My Reservations
     </option>
   </select>
 </template>
+
+<script>
+
+</script>
 
 <style>
   .top {

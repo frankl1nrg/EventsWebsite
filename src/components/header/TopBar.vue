@@ -28,7 +28,6 @@
         padding: 5px;
         height: 30px;
         border-radius: 10px;
-        float: right;
         margin-top: 25px;
     }
 
