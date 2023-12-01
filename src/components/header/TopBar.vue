@@ -30,7 +30,6 @@
         padding: 5px;
         height: 30px;
         border-radius: 10px;
-        margin-top: 25px;
     }
 
     #Top{

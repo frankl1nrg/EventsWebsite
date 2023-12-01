@@ -17,8 +17,8 @@
         background-color: rgb(28, 40, 51);
         color: white;
         padding: 5px;
-        height: 30px;
+        height: 75px;
+        width: 150px;
         border-radius: 10px;
-        margin-top: 25px;
     }
 </style>
