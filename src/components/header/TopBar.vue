@@ -13,8 +13,10 @@
             <SearchBar/>
         </div>
         <div id = "Right">
-            <UserMenu/>
-            <button id = "Button">
+            <button onclick="window.location.href='/profile'">
+                Profile
+            </button>
+            <button class = "button">
                 Logout
             </button>
         </div>
@@ -22,7 +24,7 @@
 </template>
 
 <style>
-    #Button{
+    .button{
         background-color: rgb(28, 40, 51);
         color: white;
         padding: 5px;

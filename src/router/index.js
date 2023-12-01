@@ -50,6 +50,11 @@ const router = createRouter({
       path: '/searchResults',
       name: 'Search Results',
       component: SearchResults
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: SearchResults
     }
   ]
 })
