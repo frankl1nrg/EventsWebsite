@@ -13,7 +13,7 @@
             <SearchBar/>
         </div>
         <div id = "Right">
-            <button onclick="window.location.href='/profile'">
+            <button class = "button" onclick="window.location.href='/profile'">
                 Profile
             </button>
             <button class = "button">

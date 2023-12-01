@@ -1,19 +1,19 @@
 <template>
     <div>
-        <button class = "button" onclick="window.location.href='/createEvent'">
+        <button class = "pButton" onclick="window.location.href='/createEvent'">
             New Event
         </button>
-        <button class = "button" onclick="window.location.href='/myEvents'">
+        <button class = "pButton" onclick="window.location.href='/myEvents'">
             My Events
         </button>
-        <button class = "button" onclick="window.location.href='/myReservations'">
+        <button class = "pButton" onclick="window.location.href='/myReservations'">
             My Reservations
         </button>
     </div>
 </template>
 
 <style>
-    .button{
+    .pButton{
         background-color: rgb(28, 40, 51);
         color: white;
         padding: 5px;
