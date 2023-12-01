@@ -1,5 +1,5 @@
 <template>
-    <div id = "pDiv">
+    <div class = "pDiv">
         <button class = "pButton" onclick="window.location.href='/createEvent'">
             New Event
         </button>
