@@ -1,6 +1,5 @@
 <script setup>
     import SearchBar from './SearchBar.vue';
-    import UserMenu from './UserMenu.vue';
     
 </script>
 
