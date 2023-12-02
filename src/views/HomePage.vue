@@ -15,7 +15,12 @@
   
   <script>
   import EventCard from '../components/body/EventCard.vue';
-  
+  import { API, graphqlOperation } from 'aws-amplify';
+  import { listEvents } from './graphql/queries';
+
+  const eventData = await API.graphql(graphqlOperation(listEvents, {
+    }));
+
   export default {
     name: 'HomePage',
     components: {
@@ -24,9 +29,7 @@
     data() {
       return {
         // Dummy data structure: events categorized by their types
-        events: [
-          // Sample events with category property
-        ]
+        events: eventData
       };
     },
     computed: {

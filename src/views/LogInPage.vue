@@ -10,27 +10,27 @@
   import { API, graphqlOperation } from 'aws-amplify';
   import { createEvent } from "../graphql/mutations"
 
-  async function createNewEvent() {
-  try {
-    const newEvent = await API.graphql(graphqlOperation(createEvent, { input: {
-      userid: "a3f4095e-39de-43d2-baf4-f8c16f0f6f4d",
-      description: "Lorem ipsum dolor sit amet",
-      start_datetime: "1970-01-01T12:30:23.999Z",
-      end_datetime: "1970-01-01T12:30:23.999Z",
-      location: JSON.stringify([]), // Ensure the location format matches your schema
-      ticketAvailability: 1020,
-      imageURL: "http://example.com/image.jpg",
-      title: "Event Title",
-      category: "Event Category"
-    }}));
+//   async function createNewEvent() {
+//   try {
+//     const newEvent = await API.graphql(graphqlOperation(createEvent, { input: {
+//       userid: "a3f4095e-39de-43d2-baf4-f8c16f0f6f4d",
+//       description: "Lorem ipsum dolor sit amet",
+//       start_datetime: "1970-01-01T12:30:23.999Z",
+//       end_datetime: "1970-01-01T12:30:23.999Z",
+//       location: JSON.stringify([]), // Ensure the location format matches your schema
+//       ticketAvailability: 1020,
+//       imageURL: "http://example.com/image.jpg",
+//       title: "Event Title",
+//       category: "Event Category"
+//     }}));
 
-    console.log('Event created:', newEvent);
-  } catch (error) {
-    console.error('Error creating new event:', error);
-  }
-}
+//     console.log('Event created:', newEvent);
+//   } catch (error) {
+//     console.error('Error creating new event:', error);
+//   }
+// }
 
-  createNewEvent();
+//   createNewEvent();
 
 
 </script>
