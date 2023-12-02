@@ -20,6 +20,7 @@
 
   const eventData = await API.graphql(graphqlOperation(listEvents, {
     }));
+    console.log('Event data:', eventData);
 
   export default {
     name: 'HomePage',
