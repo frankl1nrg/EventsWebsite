@@ -5,7 +5,7 @@ import TopBar from './components/header/TopBar.vue';
 </script>
 
 <template>
-  <header id="WebsiteHeader">
+  <header>
     <TopBar/>
   </header>
   <body>
