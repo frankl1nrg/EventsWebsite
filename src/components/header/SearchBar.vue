@@ -30,4 +30,17 @@ export default {
 </script>
 
 <style>
+  div{
+    color: white;
+  }
+  input{
+    border-radius: 10px;
+  }
+  button{
+    background-color: rgb(28, 40, 51);
+    color: white;
+    padding: 5px;
+    height: 30px;
+    border-radius: 10px;
+  }
 </style>

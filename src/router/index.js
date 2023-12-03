@@ -7,6 +7,7 @@ import EventInfo from '../views/EventInfo.vue'
 import MyEvents from '../views/MyEvents.vue'
 import MyReservations from '../views/MyReservations.vue'
 import SearchResults from '../views/SearchResults.vue'
+import Profile from '../views/Profile.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,11 @@ const router = createRouter({
       path: '/searchResults',
       name: 'Search Results',
       component: SearchResults
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
     }
   ]
 })

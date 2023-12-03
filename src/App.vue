@@ -1,10 +1,12 @@
 <script setup>
 import { RouterView } from 'vue-router';
+import TopBar from './components/header/TopBar.vue';
 
 </script>
 
 <template>
-  <header id="WebsiteHeader">
+  <header>
+    <TopBar/>
   </header>
   <body>
     <RouterView />
