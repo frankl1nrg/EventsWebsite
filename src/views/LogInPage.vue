@@ -2,13 +2,8 @@
   import { Authenticator } from "@aws-amplify/ui-vue";
   import "@aws-amplify/ui-vue/styles.css";
 
-  import { Amplify } from 'aws-amplify';
-  import awsconfig from '../aws-exports.js';
-
-  Amplify.configure(awsconfig);
-
-  import { API, graphqlOperation } from 'aws-amplify';
-  import { createEvent } from "../graphql/mutations"
+  // import { API, graphqlOperation } from 'aws-amplify';
+  // import { createEvent } from "../graphql/mutations"
 
 //   async function createNewEvent() {
 //   try {

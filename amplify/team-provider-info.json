@@ -17,9 +17,6 @@
       },
       "storage": {
         "s3eventswebsitestorage9743023b": {}
-      },
-      "api": {
-        "EventsWebsite": {}
       }
     }
   }

@@ -1,9 +1,8 @@
 <template>
   <div class="event-card">
-    <img :src="event.image" :alt="`${event.title} image`" class="event-image" />
+    <img :src="event.imageURL" :alt="`${event.title} image`" class="event-image" />
     <h3 class="event-title">{{ event.title }}</h3>
-    <p class="event-date">{{ event.date }}</p>
-    <p class="event-location">{{ event.location }}</p>
+    <p class="event-date">{{ (event.start_datetime).substring(0, 15) }}</p>
   </div>
 </template>
 
@@ -21,18 +20,19 @@ export default {
 
 <style scoped>
 .event-card {
-  /* Add your CSS styles here */
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 8px;
-  text-align: center;
+  /* Other styles */
 }
 
 .event-image {
-  max-width: 100%;
-  height: auto;
+  width: 120px;
+  height: 120px;
   border-radius: 4px;
+  object-fit: cover; /* This ensures the image covers the area without distortion */
+}
+
+.event-title {
+  /* Other styles */
+  width: 70%;
 }
 
 /* Add more styles as needed */
