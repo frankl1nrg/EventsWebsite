@@ -82,7 +82,7 @@
 
 .carousel-control:hover {
     background-color: black; /* Background turns black on hover */
-    opacity: 0.8; /* Opacity changes on hover */
+    opacity: 0.1; /* Opacity changes on hover */
 }
 
 </style>

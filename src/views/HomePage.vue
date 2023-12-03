@@ -20,8 +20,6 @@
   import EventCard from '../components/body/EventCard.vue';
   import { API, graphqlOperation } from 'aws-amplify';
   import { listEvents } from '../graphql/queries';
-  import { createEvent } from "../graphql/mutations";
-  import VueSlickCarousel from 'vue-slick-carousel';
   import { Amplify } from 'aws-amplify';
   import awsExports from '../aws-exports';
   import MainEvents from '../components/body/MainEvents.vue';
@@ -37,7 +35,7 @@
     data() {
     return {
       events: [], // Initialize events as an empty array
-      mainEventIds: ["1d302d75-9951-4568-816a-76b693837b41", "b060a42a-fb2d-416c-9f4b-f786db11a4cb"], // ID of main events
+      mainEventIds: ["36ce1597-866b-41a2-8acd-dd43d5762eb1", "1d302d75-9951-4568-816a-76b693837b41", "b060a42a-fb2d-416c-9f4b-f786db11a4cb"], // ID of main events
       slickSettings: {
         dots: true,
         autoplay: true,

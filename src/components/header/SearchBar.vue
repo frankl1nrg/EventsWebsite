@@ -1,4 +1,4 @@
-<template>
+<template setup>
   <div class="search-bar">
     <input
       v-model="searchTerm"

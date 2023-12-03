@@ -1,9 +1,51 @@
 <script setup>
-import SearchBar from './SearchBar.vue'
-import loginMenu from './loginMenu.vue'
+    import { SearchBar, PopUp, UserMenu } from './';
+    import { ref } from 'vue';
+    import { useRouter } from 'vue-router';
+    import { Auth, Hub } from "aws-amplify";
+    import { Authenticator } from "@aws-amplify/ui-vue";
+    import "@aws-amplify/ui-vue/styles.css";
 
-const redirectToPath = (path) => {
-      window.location.href = path
+    const router = useRouter();
+  
+    const redirectToPath = (path) => {
+        router.push(path);
+    };
+
+    const user = ref(null);
+
+    const checkUser = async () => {
+    try {
+        const currentUser = await Auth.currentAuthenticatedUser();
+        user.value = currentUser;
+        console.log(user);
+    } catch (error) {
+        user.value = null;
+    }
+    };
+    checkUser();
+
+    // Listen for authentication events and update user state
+    Hub.listen('auth', (data) => {
+    const { payload } = data;
+    if (payload.event === 'signIn' || payload.event === 'signUp') {
+        checkUser();
+        TogglePopup('loginButtonTrigger');
+    }
+    });
+
+    const popupTrigger = ref({
+        loginButtonTrigger: false,
+        menuButtonTrigger: false
+    });
+
+    const TogglePopup = (trigger) => {
+        popupTrigger.value[trigger] = !popupTrigger.value[trigger];
+    };
+
+    function handleSignOut() {
+        Auth.signOut();
+        user.value = null;
     };
 
 </script>
@@ -11,27 +53,47 @@ const redirectToPath = (path) => {
 <template>
   <div class="top-bar">
     
-    <div class="left">
+    <div class="left-top-bar">
         <div class="logo-container">
-            <h3 @click="redirectToPath('/')">TicketPort</h3>
+            <h1 @click="redirectToPath('/')">TicketPort</h1>
         </div>
-        <div id="category-container" >
-            <select>
-             <option value="">Categories</option>
-            </select>
+        <div class="welcome" >
+            <p v-if="user">Welcome back, {{ user.attributes.email }}!</p>
         </div>
     </div>
-    <div class="mid">
+    <div class="center-top-bar">
         <SearchBar class="search-bar"></SearchBar>
     </div>
-    <div class="right">
-        <button @click="isVisible = true">Login</button>
-      <loginMenu
-        :isVisible = true
-        @update:isVisible="$event"
-      />
+    <div class="right-top-bar">
+        <button v-if="!user" 
+            @click="() => TogglePopup('loginButtonTrigger')">Login</button>
+        <div class="logged-menu" v-else>
+            <button @click="() => TogglePopup('menuButtonTrigger')">Menu</button>
+            <button @click="handleSignOut()">Logout</button>
+        </div>
+
     </div> 
 
+    <!-- Login Popup -->
+    <PopUp class="loginpopup" v-if="popupTrigger.loginButtonTrigger">
+        <button class="popup-close" 
+            @click="() => TogglePopup('loginButtonTrigger')"
+        >Close</button>
+        <!-- Content for login popup -->
+        <authenticator>
+        </authenticator>
+    </PopUp>
+
+    <!-- Menu Popup -->
+    <PopUp class="usermenu" v-if="popupTrigger.menuButtonTrigger">
+        <button class="popup-close" 
+                @click="() => TogglePopup('menuButtonTrigger')"
+        >Close</button>
+        <!-- Content for menu popup -->
+        <UserMenu
+            :closePopup="() => TogglePopup('menuButtonTrigger')"
+        />
+    </PopUp>
   </div>
 </template>
 
@@ -48,7 +110,7 @@ const redirectToPath = (path) => {
 
 
 
-.left{
+.left-top-bar{
     flex-basis: 20%;
     margin: 0 20px;
     width: 100%;
@@ -57,33 +119,40 @@ const redirectToPath = (path) => {
     height: 100%;
 }
 
-#category-container{
-    margin-left:auto ;
+.welcome{
+    margin: 0 auto;
 }
 
-.mid{
+.center-top-bar{
     flex-basis: 60%;
-    /* background-color: blue; */
     width: 100%;
     display: flex;
     align-items: center;
     height: 100%;
-
 }
 
 .search-bar{
     margin: auto;
 }
 
-.right{
+.right-top-bar{
     flex-basis: 10%;
     width: 100%;
     display: flex;
     height: 100%;
 }
 
-.right button{
+.right-top-bar button{
     margin-left: auto;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+.right-top-bar .logged-menu {
+    display: flex;
+    margin: 0 auto;
 }
 
 </style>
