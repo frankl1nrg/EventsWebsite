@@ -1,71 +1,89 @@
 <script setup>
-    import SearchBar from './SearchBar.vue';
-    
+import SearchBar from './SearchBar.vue'
+import loginMenu from './loginMenu.vue'
+
+const redirectToPath = (path) => {
+      window.location.href = path
+    };
+
 </script>
 
 <template>
-    <div id = "Top">
-        <div id = "Left">
-            <button id = "Logo" onclick="window.location.href='/'">TicketPort</button>
+  <div class="top-bar">
+    
+    <div class="left">
+        <div class="logo-container">
+            <h3 @click="redirectToPath('/')">TicketPort</h3>
         </div>
-        <div id = "Center">
-            <SearchBar/>
-        </div>
-        <div id = "Right">
-            <button class = "button" onclick="window.location.href='/profile'">
-                Profile
-            </button>
-            <button class = "button">
-                Logout
-            </button>
+        <div id="category-container" >
+            <select>
+             <option value="">Categories</option>
+            </select>
         </div>
     </div>
+    <div class="mid">
+        <SearchBar class="search-bar"></SearchBar>
+    </div>
+    <div class="right">
+        <button @click="isVisible = true">Login</button>
+      <loginMenu
+        :isVisible = true
+        @update:isVisible="$event"
+      />
+    </div> 
+
+  </div>
 </template>
 
 <style>
-    .button{
-        background-color: rgb(28, 40, 51);
-        color: white;
-        padding: 5px;
-        height: 30px;
-        border-radius: 10px;
-    }
 
-    #Top{
-        background-color: rgb(61, 93, 133);
-        color: white;
-        padding: 5px;
-        height: 50px;
-        border-radius: 10px;
-    }
+.top-bar {
+  background-color: rgb(61, 93, 133);
+  color: white;
+  align-items: center;
+  height: 11vh;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
 
-    #Logo{
-        border-width: 0px;
-        font-size: 2em;
-        padding-right: 25px;
-        background-color: rgb(61, 93, 133);
-        color: white;
-        margin-top: -5px;
-        padding: 5px;
-        height: 30px;
-        border-radius: 10px;
-    }
 
-    #Left{
-        float:left;
-    }
 
-    #Center{
-        display: flex;
-        margin-top: 10px;
-        width: auto;
-        align-items: center;
-        justify-content: center;
-    }
+.left{
+    flex-basis: 20%;
+    margin: 0 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
 
-    #Right{
-        margin-top: -30px;
-        float: right;
-        width: 200px;
-    }
+#category-container{
+    margin-left:auto ;
+}
+
+.mid{
+    flex-basis: 60%;
+    /* background-color: blue; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+}
+
+.search-bar{
+    margin: auto;
+}
+
+.right{
+    flex-basis: 10%;
+    width: 100%;
+    display: flex;
+    height: 100%;
+}
+
+.right button{
+    margin-left: auto;
+}
+
 </style>
