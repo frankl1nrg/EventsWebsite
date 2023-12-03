@@ -15,6 +15,10 @@ a,
   transition: 0.4s;
 }
 
+body{
+  background-color: rgb(112, 155, 190);
+}
+
 @media (hover: hover) {
   a:hover,
   .green:hover {
@@ -23,14 +27,4 @@ a,
   
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-  }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-}
