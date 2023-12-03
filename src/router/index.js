@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
-import LoginPage from '../views/LogInPage.vue'
 import CreateEvent from '../views/CreateEvent.vue'
 import EditEvent from '../views/EditEvent.vue'
 import EventInfo from '../views/EventInfo.vue'
@@ -16,11 +15,6 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       component: HomePage
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: LoginPage
     },
     {
       path: '/createEvent',

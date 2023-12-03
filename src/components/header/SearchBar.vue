@@ -1,4 +1,4 @@
-<template>
+<template setup>
   <div class="search-bar">
     <input
       v-model="searchTerm"
@@ -30,17 +30,28 @@ export default {
 </script>
 
 <style>
-  div{
-    color: white;
-  }
+
+ .search-bar{
+  display: flex;
+  justify-content: space-between;
+  /* background-color: orange; */
+  height: 100%;
+  align-items: center;
+ }
+
+  
   input{
     border-radius: 10px;
+    height: 50%;
   }
   button{
-    background-color: rgb(28, 40, 51);
+    background-color: black;
     color: white;
-    padding: 5px;
-    height: 30px;
+    height: 40%;
     border-radius: 10px;
+    border: none;
+    margin: auto 0;
+    width: 9vw;
+    min-width: fit-content;
   }
 </style>

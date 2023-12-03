@@ -1,71 +1,158 @@
 <script setup>
-    import SearchBar from './SearchBar.vue';
-    
+    import { SearchBar, PopUp, UserMenu } from './';
+    import { ref } from 'vue';
+    import { useRouter } from 'vue-router';
+    import { Auth, Hub } from "aws-amplify";
+    import { Authenticator } from "@aws-amplify/ui-vue";
+    import "@aws-amplify/ui-vue/styles.css";
+
+    const router = useRouter();
+  
+    const redirectToPath = (path) => {
+        router.push(path);
+    };
+
+    const user = ref(null);
+
+    const checkUser = async () => {
+    try {
+        const currentUser = await Auth.currentAuthenticatedUser();
+        user.value = currentUser;
+        console.log(user);
+    } catch (error) {
+        user.value = null;
+    }
+    };
+    checkUser();
+
+    // Listen for authentication events and update user state
+    Hub.listen('auth', (data) => {
+    const { payload } = data;
+    if (payload.event === 'signIn' || payload.event === 'signUp') {
+        checkUser();
+        TogglePopup('loginButtonTrigger');
+    }
+    });
+
+    const popupTrigger = ref({
+        loginButtonTrigger: false,
+        menuButtonTrigger: false
+    });
+
+    const TogglePopup = (trigger) => {
+        popupTrigger.value[trigger] = !popupTrigger.value[trigger];
+    };
+
+    function handleSignOut() {
+        Auth.signOut();
+        user.value = null;
+    };
+
 </script>
 
 <template>
-    <div id = "Top">
-        <div id = "Left">
-            <button id = "Logo" onclick="window.location.href='/'">TicketPort</button>
+  <div class="top-bar">
+    
+    <div class="left-top-bar">
+        <div class="logo-container">
+            <h1 @click="redirectToPath('/')">TicketPort</h1>
         </div>
-        <div id = "Center">
-            <SearchBar/>
-        </div>
-        <div id = "Right">
-            <button class = "button" onclick="window.location.href='/profile'">
-                Profile
-            </button>
-            <button class = "button">
-                Logout
-            </button>
+        <div class="welcome" >
+            <p v-if="user">Welcome back, {{ user.attributes.email }}!</p>
         </div>
     </div>
+    <div class="center-top-bar">
+        <SearchBar class="search-bar"></SearchBar>
+    </div>
+    <div class="right-top-bar">
+        <button v-if="!user" 
+            @click="() => TogglePopup('loginButtonTrigger')">Login</button>
+        <div class="logged-menu" v-else>
+            <button @click="() => TogglePopup('menuButtonTrigger')">Menu</button>
+            <button @click="handleSignOut()">Logout</button>
+        </div>
+
+    </div> 
+
+    <!-- Login Popup -->
+    <PopUp class="loginpopup" v-if="popupTrigger.loginButtonTrigger">
+        <button class="popup-close" 
+            @click="() => TogglePopup('loginButtonTrigger')"
+        >Close</button>
+        <!-- Content for login popup -->
+        <authenticator>
+        </authenticator>
+    </PopUp>
+
+    <!-- Menu Popup -->
+    <PopUp class="usermenu" v-if="popupTrigger.menuButtonTrigger">
+        <button class="popup-close" 
+                @click="() => TogglePopup('menuButtonTrigger')"
+        >Close</button>
+        <!-- Content for menu popup -->
+        <UserMenu
+            :closePopup="() => TogglePopup('menuButtonTrigger')"
+        />
+    </PopUp>
+  </div>
 </template>
 
 <style>
-    .button{
-        background-color: rgb(28, 40, 51);
-        color: white;
-        padding: 5px;
-        height: 30px;
-        border-radius: 10px;
-    }
 
-    #Top{
-        background-color: rgb(61, 93, 133);
-        color: white;
-        padding: 5px;
-        height: 50px;
-        border-radius: 10px;
-    }
+.top-bar {
+  background-color: rgb(61, 93, 133);
+  color: white;
+  align-items: center;
+  height: 11vh;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
 
-    #Logo{
-        border-width: 0px;
-        font-size: 2em;
-        padding-right: 25px;
-        background-color: rgb(61, 93, 133);
-        color: white;
-        margin-top: -5px;
-        padding: 5px;
-        height: 30px;
-        border-radius: 10px;
-    }
 
-    #Left{
-        float:left;
-    }
 
-    #Center{
-        display: flex;
-        margin-top: 10px;
-        width: auto;
-        align-items: center;
-        justify-content: center;
-    }
+.left-top-bar{
+    flex-basis: 20%;
+    margin: 0 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
 
-    #Right{
-        margin-top: -30px;
-        float: right;
-        width: 200px;
-    }
+.welcome{
+    margin: 0 auto;
+}
+
+.center-top-bar{
+    flex-basis: 60%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.search-bar{
+    margin: auto;
+}
+
+.right-top-bar{
+    flex-basis: 10%;
+    width: 100%;
+    display: flex;
+    height: 100%;
+}
+
+.right-top-bar button{
+    margin-left: auto;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+.right-top-bar .logged-menu {
+    display: flex;
+    margin: 0 auto;
+}
+
 </style>
