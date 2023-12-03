@@ -11,8 +11,9 @@
           ],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
-              "description": "api key description"
+              "apiKeyExpirationDate": "2023-12-09T22:29:24.742Z",
+              "apiKeyExpirationDays": 7,
+              "description": "API Key for local development"
             },
             "authenticationType": "API_KEY"
           }
@@ -48,6 +49,13 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "storage": {
+    "s3eventswebsitestorage9743023b": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
     }
   }
 }
