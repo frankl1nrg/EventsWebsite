@@ -1,34 +1,19 @@
 <template>
-    <div class = "menu">
-        <div class = "center">
-            <label>
-                Event Name
-            </label>
-            <input class = "input">
-        </div>
-        <div class = "center">
-            <label>
-                Location
-            </label>
-            <input class = "input">
-        </div>
-        <div class = "center">
-            <label>
-                Ticket Levels
-            </label>
-            <input class = "input">
-        </div>
-        <div class = "center">
-            <label>
-                Ticket Prices
-            </label>
-            <input class = "input">
-        </div>
-        <button class = "loginButton">
-            Create Event
-        </button>
+    <div class ="not-logged-in">
+        <img src="src/assets/images/notLoggedInCreateEvent.png" alt="not logged in" class="center">
     </div>
 </template>
+
+<script>
+    import { setupAuthListener, user } from '@/services/UserService';
+    import EventCard from '../components/body/EventCard.vue';
+    import { API, graphqlOperation } from 'aws-amplify';
+    import { listEvents, listCategories } from '../graphql/queries';
+    import { Amplify } from 'aws-amplify';
+    import awsExports from '../aws-exports';
+
+    //make it so that logged in users can create events
+</script>
 
 <style>
     .menu{
@@ -59,5 +44,7 @@
         display: block;
         margin: auto;
         margin-top: 30px;
+        width: 50%;
+        height: auto;
     }
 </style>
