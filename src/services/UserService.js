@@ -7,7 +7,7 @@ import { ref } from 'vue';
 export const user = ref(null);
 
 // Function to check if the user is authenticated
-const checkUser = async () => {
+export const checkUser = async () => {
   try {
       const currentUser = await Auth.currentAuthenticatedUser();
       user.value = currentUser;
@@ -16,9 +16,6 @@ const checkUser = async () => {
       user.value = null;
   }
   };
-
-// Call the checkUser function to initialize the user state
-checkUser();
 
 // Function to store user in the database
 export const storeUserInDB = async () => {
