@@ -23,7 +23,7 @@
     }
   },
   "auth": {
-    "eventswebsitec205d648": {
+    "EventsWebsite": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -36,7 +36,8 @@
           "passwordPolicyMinLength": 8
         },
         "signupAttributes": [
-          "EMAIL"
+          "NAME",
+          "FAMILY_NAME"
         ],
         "socialProviders": [],
         "usernameAttributes": [

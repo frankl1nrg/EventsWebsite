@@ -1,38 +1,15 @@
 <script setup>
-    import { SearchBar, PopUp, UserMenu } from './';
-    import { ref } from 'vue';
+    import { ref, onMounted, onUnmounted } from 'vue';
+    import { SearchBar, PopUp, UserMenu, CustomAuth } from './';
     import { useRouter } from 'vue-router';
-    import { Auth, Hub } from "aws-amplify";
-    import { Authenticator } from "@aws-amplify/ui-vue";
-    import "@aws-amplify/ui-vue/styles.css";
+    import { Auth } from 'aws-amplify';
+    import { setupAuthListener, user } from '@/services/UserService';
 
     const router = useRouter();
   
     const redirectToPath = (path) => {
         router.push(path);
     };
-
-    const user = ref(null);
-
-    const checkUser = async () => {
-    try {
-        const currentUser = await Auth.currentAuthenticatedUser();
-        user.value = currentUser;
-        console.log(user);
-    } catch (error) {
-        user.value = null;
-    }
-    };
-    checkUser();
-
-    // Listen for authentication events and update user state
-    Hub.listen('auth', (data) => {
-    const { payload } = data;
-    if (payload.event === 'signIn' || payload.event === 'signUp') {
-        checkUser();
-        TogglePopup('loginButtonTrigger');
-    }
-    });
 
     const popupTrigger = ref({
         loginButtonTrigger: false,
@@ -48,6 +25,22 @@
         user.value = null;
     };
 
+    let removeAuthListener;
+
+    onMounted(() => {
+    removeAuthListener = setupAuthListener((eventType) => {
+        if (eventType === 'signIn') {
+            TogglePopup('loginButtonTrigger');
+        }
+    });
+    });
+
+    onUnmounted(() => {
+    if (removeAuthListener) {
+        removeAuthListener();
+    }
+    });
+
 </script>
 
 <template>
@@ -58,7 +51,7 @@
             <h1 @click="redirectToPath('/')">TicketPort</h1>
         </div>
         <div class="welcome" >
-            <p v-if="user">Welcome back, {{ user.attributes.email }}!</p>
+            <p v-if="user">Welcome back, {{ user.attributes.name }}!</p>
         </div>
     </div>
     <div class="center-top-bar">
@@ -80,8 +73,8 @@
             @click="() => TogglePopup('loginButtonTrigger')"
         >Close</button>
         <!-- Content for login popup -->
-        <authenticator>
-        </authenticator>
+        <CustomAuth>
+        </CustomAuth>
     </PopUp>
 
     <!-- Menu Popup -->

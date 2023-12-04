@@ -1,10 +1,10 @@
 <template>
     <div class="home-page">
       <div class="main-events">
-        <MainEvents :events="mainEvents" />
+      <MainEvents :events="mainEvents" />
       </div>
-      <div v-for="(categoryEvents, category) in categorizedEvents" :key="category">
-        <h2>{{ category }}</h2>
+      <div v-for="(categoryEvents, categoryId) in categorizedEvents" :key="categoryId">
+      <h2>{{ getCategoryName(categoryId) }}</h2>
         <div class="events-row">
           <EventCard
             v-for="event in categoryEvents"
@@ -19,7 +19,7 @@
   <script>
   import EventCard from '../components/body/EventCard.vue';
   import { API, graphqlOperation } from 'aws-amplify';
-  import { listEvents } from '../graphql/queries';
+  import { listEvents, listCategories } from '../graphql/queries';
   import { Amplify } from 'aws-amplify';
   import awsExports from '../aws-exports';
   import MainEvents from '../components/body/MainEvents.vue';
@@ -35,7 +35,7 @@
     data() {
     return {
       events: [], // Initialize events as an empty array
-      mainEventIds: ["36ce1597-866b-41a2-8acd-dd43d5762eb1", "1d302d75-9951-4568-816a-76b693837b41", "b060a42a-fb2d-416c-9f4b-f786db11a4cb"], // ID of main events
+      mainEventIds: ["77db75f6-83f1-426f-9dd7-078cewewewed715ae31", "33310d38-4072-430a-9a4d-4e4fc7f4ee30", "20a76d4e-747a-4422-9cfa-ae83ed412RERERERERE2e7"], // ID of main events
       slickSettings: {
         dots: true,
         autoplay: true,
@@ -45,11 +45,27 @@
   },
   async created() {
     try {
+      const categoriesData = await API.graphql(graphqlOperation(listCategories));
+      console.log('Categories data:', categoriesData);
+      this.categories = categoriesData.data.listCategories.items; // Populate categories array with the fetched data
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    };
+    try {
       const eventData = await API.graphql(graphqlOperation(listEvents));
       console.log('Event data:', eventData);
       this.events = eventData.data.listEvents.items; // Populate the events array with the fetched data
     } catch (error) {
       console.error('Error fetching events:', error);
+    };
+  },
+  methods: {
+    getCategoryName(categoryId) {
+      if (this.categories && this.categories.length > 0) {
+        const category = this.categories.find(cat => cat.id === categoryId);
+        return category ? category.name : 'Unknown Category';
+      }
+      return 'Loading...'; // or any other placeholder text
     }
   },
   computed: {
@@ -66,12 +82,13 @@
       this.events.forEach(event => {
         event.start_datetime = event.start_datetime.toString();
       });
+      //I want to show category name instead of category id but event doesn't have category name so I need to add it from category.name
       const categories = {};
       this.events.forEach(event => {
-        if (!categories[event.category]) {
-          categories[event.category] = [];
+        if (!categories[event.eventCategoryId]) {
+          categories[event.eventCategoryId] = [];
         }
-        categories[event.category].push(event);
+        categories[event.eventCategoryId].push(event);
       });
       return categories;
     }
