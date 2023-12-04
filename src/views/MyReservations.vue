@@ -1,6 +1,6 @@
 <template>
     <div class ="not-logged-in">
-        <img src="src/views/images/notLoggedInMyReservations.png" alt="not logged in" class="center">
+        <img src="/notLoggedInMyReservations.png" alt="not logged in" class="center">
     </div>
 </template>
 
