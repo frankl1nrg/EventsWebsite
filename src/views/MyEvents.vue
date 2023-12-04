@@ -1,92 +1,115 @@
 <template>
-    <div v-if="isLoggedIn">
-      <!-- Display user's events -->
-      <div v-for="event in userEvents" :key="event.id" class="event-card-container">
-        <EventCard :event="event" />
-      </div>
+  <div v-if="isLoggedIn">
+    <!-- Display user's events -->
+    <div v-for="event in userEvents" :key="event.id" class="event-card-container">
+      <EventCard :event="event" />
     </div>
-    <div v-else class="not-logged-in">
-      <!-- Display not logged in message -->
-      <img src="/notLoggedInMyEvents.png" alt="Not Logged In" class="center">
-    </div>
-  </template>
-  
+
+  </div>
+  <div v-else class="not-logged-in">
+    <!-- Display not logged in message -->
+    <img src="@/assets/images/notLoggedInMyEvents.png" alt="Not Logged In" class="center">
+  </div>
+</template>
+
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { setupAuthListener, user } from '@/services/UserService';
 import EventCard from '../components/body/EventCard.vue';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listEvents } from '../graphql/queries';
-import { Amplify } from 'aws-amplify';
-import awsExports from '../aws-exports';
-
-Amplify.configure(awsExports);
 
 export default {
-  components: {
-    EventCard,
-  },
-  setup() {
-    const isLoggedIn = ref(false);
-    const userEvents = ref([]);
+components: {
+  EventCard,
+},
+setup() {
+  const isLoggedIn = ref(false);
+  const userEvents = ref([]);
 
-    const fetchUserEvents = async () => {
-      if (user.value) {
-        try {
+  const fetchUserEvents = async () => {
+      console.log(user.value.attributes.email);
+    if (user.value && user.value.attributes.email) {
+      try {
           const eventData = await API.graphql(graphqlOperation(listEvents, {
-            filter: { userId: { eq: user.value.id } }
-          }));
+              filter: {
+                  eventUserId: {
+                  eq: user.value.attributes.email
+                  }
+              }
+              }));
           userEvents.value = eventData.data.listEvents.items;
-        } catch (error) {
+          console.log('Event data:', eventData);
+      } catch (error) {
           console.error('Error fetching events:', error);
-        }
       }
-    };
+    }
+  };
 
-    onMounted(async () => {
-      await setupAuthListener();
-      isLoggedIn.value = user.value !== null;
-      if (isLoggedIn.value) {
-        await fetchUserEvents();
-      }
-    });
+  onMounted(async () => {
+    await setupAuthListener();
+    isLoggedIn.value = user.value !== null;
+    if (isLoggedIn.value) {
+      await fetchUserEvents();
+    }
+  });
 
-    return { isLoggedIn, userEvents };
-  }
+  watch(user, async (newValue) => {
+    if (newValue && newValue.id) {
+      isLoggedIn.value = true;
+      await fetchUserEvents();
+    } else {
+      isLoggedIn.value = false;
+    }
+  });
+
+  return { isLoggedIn, userEvents };
+}
 };
 </script>
 
 <style>
-    .menu{
-        align-items: center;
-        justify-content: center;
-    }
+  .menu{
+      align-items: center;
+      justify-content: center;
+  }
 
-    .input{
-        background-color: rgb(255, 255, 255);
-        color: black;
-        padding: 5px;
-        height: 30px;
-        border-radius: 10px;
-    }
+  .input{
+      background-color: rgb(255, 255, 255);
+      color: black;
+      padding: 5px;
+      height: 30px;
+      border-radius: 10px;
+  }
 
-    .loginButton{
-        display: block;
-        background-color: rgb(28, 40, 51);
-        margin: auto;
-        margin-top: 30px;
-        color: white;
-        height: 40px;
-        width: 100px;
-        border-radius: 10px;
-    }
+  .loginButton{
+      display: block;
+      background-color: rgb(28, 40, 51);
+      margin: auto;
+      margin-top: 30px;
+      color: white;
+      height: 40px;
+      width: 100px;
+      border-radius: 10px;
+  }
 
-    .center{
-        display: block;
-        margin: auto;
-        margin-top: 30px;
-        width: 50%;
-        height: auto;
-    }
+  .center{
+      display: block;
+      margin: auto;
+      margin-top: 30px;
+      width: 50%;
+      height: auto;
+  }
+
+  .event-card-container {
+      display: grid;;
+      flex-direction: row;
+      flex-wrap: nowrap; /* Prevent wrapping onto new lines */
+      overflow-x: auto; /* Add horizontal scrollbar */
+      gap: 20px; /* Optional: Adds space between cards */
+      margin: 20px;
+      /* Additional styling as needed */
+  }
+
 </style>
