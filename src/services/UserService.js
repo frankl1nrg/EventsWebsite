@@ -54,8 +54,6 @@ export const storeUserInDB = async (userData) => {
   }
 };
 
-
-
 // Function to set up the listener
 export const setupAuthListener = (onAuthEvent) => {
     const listener = Hub.listen('auth', (data) => {

@@ -54,9 +54,9 @@
     try {
       const categoriesData = await API.graphql(graphqlOperation(listCategories));
       console.log('Categories data:', categoriesData);
-      this.categories = categoriesData.data.listEvents.items; // Populate categories array with the fetched data
+      this.categories = categoriesData.data.listCategories.items; // Populate categories array with the fetched data
     } catch (error) {
-      console.error('Error fetching categotires:', error);
+      console.error('Error fetching categories:', error);
     };
   },
   computed: {
