@@ -34,7 +34,6 @@ export default {
 <style scoped>
 .event-card {
   /* Other styles */
-  width: 200px;
 }
 
 .event-card-button {
