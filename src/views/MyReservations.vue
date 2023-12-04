@@ -8,7 +8,7 @@
     </div>
     <div v-else class="not-logged-in">
       <!-- Display not logged in message -->
-      <img src="/notLoggedInReservations.png" alt="Not Logged In" class="center">
+      <img src="/notLoggedInMyReservations.png" alt="Not Logged In" class="center">
     </div>
   </template>
   
