@@ -81,34 +81,34 @@
 <template setup>
     <form @submit.prevent="handleSubmit" class="event-form">
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title">Title </label>
         <input type="text" id="title" v-model="formState.title" required>
         <span v-if="!formState.titleValid">Title is required.</span>
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description">Description </label>
         <input type="text" id="description" v-model="formState.description" required>
         <span v-if="!formState.descriptionValid">Description is required.</span>
       </div>
       <div class="form-group">
-        <label for="start-datetime">Start datetime</label>
+        <label for="start-datetime">Start datetime </label>
         <input type="datetime-local" id="start-datetime" v-model="formState.start_datetime">
       </div>
       <div class="form-group">
-        <label for="end-datetime">End datetime</label>
+        <label for="end-datetime">End datetime </label>
         <input type="datetime-local" id="end-datetime" v-model="formState.end_datetime">
       </div>
       <div class="form-group">
-        <label for="location">Location</label>
+        <label for="location">Location </label>
         <input type="text" id="location" v-model="formState.location">
       </div>
       <div class="form-group">
-        <label for="ticket-availability">Ticket availability</label>
+        <label for="ticket-availability">Ticket availability </label>
         <input type="number" id="ticket-availability" v-model.number="formState.ticketAvailability" min="1" required>
         <span v-if="!formState.ticketAvailabilityValid">Must be an integer greater than 1.</span>
       </div>
       <div class="form-group">
-        <label for="image-url">Image url</label>
+        <label for="image-url">Image url </label>
         <input type="url" id="image-url" v-model="formState.imageURL" required>
       </div>
       <div class="form-label">
@@ -116,7 +116,7 @@
         <span>{{ user.attributes.email }} </span>
       </div>
       <div class="form-select">
-        <label for="category">Category</label>
+        <label for="category">Category </label>
         <select id="category" v-model="formState.category">
           <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
         </select>
