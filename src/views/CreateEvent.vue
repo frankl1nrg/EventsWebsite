@@ -1,19 +1,19 @@
-<template>
-    <div class ="not-logged-in">
+<script setup>
+    import { user } from '@/services/UserService';
+    import {
+ EventCreateForm 
+} from './ui-components';
+    import '@aws-amplify/ui-vue/styles.css'
+</script>
+
+<template setup>
+    <div class ="not-logged-in" v-if="!user">
         <img src="/notLoggedInCreateEvent.png" alt="not logged in" class="center">
     </div>
+    <div class="create-event" v-else>
+        <EventCreateForm/>
+    </div>
 </template>
-
-<script>
-    import { setupAuthListener, user } from '@/services/UserService';
-    import EventCard from '../components/body/EventCard.vue';
-    import { API, graphqlOperation } from 'aws-amplify';
-    import { listEvents, listCategories } from '../graphql/queries';
-    import { Amplify } from 'aws-amplify';
-    import awsExports from '../aws-exports';
-
-    //make it so that logged in users can create events
-</script>
 
 <style>
     .menu{

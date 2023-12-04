@@ -20,11 +20,8 @@
   import EventCard from '../components/body/EventCard.vue';
   import { API, graphqlOperation } from 'aws-amplify';
   import { listEvents, listCategories } from '../graphql/queries';
-  import { Amplify } from 'aws-amplify';
-  import awsExports from '../aws-exports';
   import MainEvents from '../components/body/MainEvents.vue';
 
-  Amplify.configure(awsExports);
 
   export default {
     name: 'HomePage',

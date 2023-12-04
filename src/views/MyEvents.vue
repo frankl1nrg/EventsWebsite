@@ -18,10 +18,6 @@ import { setupAuthListener, user } from '@/services/UserService';
 import EventCard from '../components/body/EventCard.vue';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listEvents } from '../graphql/queries';
-import { Amplify } from 'aws-amplify';
-import awsExports from '../aws-exports';
-
-Amplify.configure(awsExports);
 
 export default {
   components: {
