@@ -9,7 +9,7 @@ export const user = ref(null);
 // Function to check if the user is authenticated
 const checkUser = async () => {
   try {
-      const currentUser = await Auth.currentUserInfo();
+      const currentUser = await Auth.currentAuthenticatedUser();
       user.value = currentUser;
       console.log(user);
   } catch (error) {
