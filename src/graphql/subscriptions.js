@@ -43,7 +43,6 @@ export const onCreateReservation = /* GraphQL */ `
       datetime
       User {
         id
-        cognitoID
         name
         lastName
         email
@@ -83,7 +82,6 @@ export const onUpdateReservation = /* GraphQL */ `
       datetime
       User {
         id
-        cognitoID
         name
         lastName
         email
@@ -123,7 +121,6 @@ export const onDeleteReservation = /* GraphQL */ `
       datetime
       User {
         id
-        cognitoID
         name
         lastName
         email
@@ -158,7 +155,6 @@ export const onCreateUser = /* GraphQL */ `
   subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
     onCreateUser(filter: $filter) {
       id
-      cognitoID
       name
       lastName
       email
@@ -172,7 +168,6 @@ export const onUpdateUser = /* GraphQL */ `
   subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
     onUpdateUser(filter: $filter) {
       id
-      cognitoID
       name
       lastName
       email
@@ -186,7 +181,6 @@ export const onDeleteUser = /* GraphQL */ `
   subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
     onDeleteUser(filter: $filter) {
       id
-      cognitoID
       name
       lastName
       email
@@ -209,7 +203,6 @@ export const onCreateEvent = /* GraphQL */ `
       title
       User {
         id
-        cognitoID
         name
         lastName
         email
@@ -245,7 +238,6 @@ export const onUpdateEvent = /* GraphQL */ `
       title
       User {
         id
-        cognitoID
         name
         lastName
         email
@@ -281,7 +273,6 @@ export const onDeleteEvent = /* GraphQL */ `
       title
       User {
         id
-        cognitoID
         name
         lastName
         email

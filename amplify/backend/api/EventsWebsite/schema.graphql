@@ -12,7 +12,6 @@ type Reservation @model @auth(rules: [{allow: public}]) {
 
 type User @model @auth(rules: [{allow: public}]) {
   id: ID!
-  cognitoID: String!
   name: String
   lastName: String
   email: String!

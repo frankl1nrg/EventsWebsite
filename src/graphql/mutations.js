@@ -53,7 +53,6 @@ export const createReservation = /* GraphQL */ `
       datetime
       User {
         id
-        cognitoID
         name
         lastName
         email
@@ -94,7 +93,6 @@ export const updateReservation = /* GraphQL */ `
       datetime
       User {
         id
-        cognitoID
         name
         lastName
         email
@@ -135,7 +133,6 @@ export const deleteReservation = /* GraphQL */ `
       datetime
       User {
         id
-        cognitoID
         name
         lastName
         email
@@ -173,7 +170,6 @@ export const createUser = /* GraphQL */ `
   ) {
     createUser(input: $input, condition: $condition) {
       id
-      cognitoID
       name
       lastName
       email
@@ -190,7 +186,6 @@ export const updateUser = /* GraphQL */ `
   ) {
     updateUser(input: $input, condition: $condition) {
       id
-      cognitoID
       name
       lastName
       email
@@ -207,7 +202,6 @@ export const deleteUser = /* GraphQL */ `
   ) {
     deleteUser(input: $input, condition: $condition) {
       id
-      cognitoID
       name
       lastName
       email
@@ -233,7 +227,6 @@ export const createEvent = /* GraphQL */ `
       title
       User {
         id
-        cognitoID
         name
         lastName
         email
@@ -272,7 +265,6 @@ export const updateEvent = /* GraphQL */ `
       title
       User {
         id
-        cognitoID
         name
         lastName
         email
@@ -311,7 +303,6 @@ export const deleteEvent = /* GraphQL */ `
       title
       User {
         id
-        cognitoID
         name
         lastName
         email

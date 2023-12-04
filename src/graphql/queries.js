@@ -38,7 +38,6 @@ export const getReservation = /* GraphQL */ `
       datetime
       User {
         id
-        cognitoID
         name
         lastName
         email
@@ -94,7 +93,6 @@ export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
       id
-      cognitoID
       name
       lastName
       email
@@ -113,7 +111,6 @@ export const listUsers = /* GraphQL */ `
     listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        cognitoID
         name
         lastName
         email
@@ -139,7 +136,6 @@ export const getEvent = /* GraphQL */ `
       title
       User {
         id
-        cognitoID
         name
         lastName
         email

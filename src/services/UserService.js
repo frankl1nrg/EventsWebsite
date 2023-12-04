@@ -23,27 +23,10 @@ checkUser();
 // Function to store user in the database
 export const storeUserInDB = async (userData) => {
   console.log('User data:', userData);
-  
-  // Create the user object to be stored in the database
-  // The user object should have the following properties:
-  // - userid: the username of the user
-  // - name: the first name of the user
-  // - lastName: the last name of the user
-  // - email: the email of the user
-  // - password: the password of the user (optional)
-  // - createdAt: the current date and time (optional)
-  // - updatedAt: the current date and time (optional)
-  // - isAdmin: a boolean indicating whether the user is an admin (optional)
-  // - isVerified: a boolean indicating whether the user is verified (optional)
-  // - isDisabled: a boolean indicating whether the user is disabled (optional)
-  // - isDeleted: a boolean indicating whether the user is deleted (optional)
-  // - isBanned: a boolean indicating whether the user is banned (optional)
-  // - isSuspended: a boolean indicating whether the user is suspended (optional)
-  // - isLocked: a boolean indicating whether the user is locked (optional)
 
   const input = {
-    userid: userData.userSub,
-    email: userData.username,
+    id: userData.user.username,
+    email: userData.user.username,
   };
 
   try {
