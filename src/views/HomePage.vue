@@ -1,10 +1,10 @@
 <template>
     <div class="home-page">
       <div class="main-events">
-        <MainEvents :events="mainEvents" />
+      <MainEvents :events="mainEvents" />
       </div>
-      <div v-for="(categoryEvents, category) in categorizedEvents" :key="category">
-        <h2>{{ category }}</h2>
+      <div v-for="(categoryEvents, categoryId) in categorizedEvents" :key="categoryId">
+      <h2>{{ getCategoryName(categoryId) }}</h2>
         <div class="events-row">
           <EventCard
             v-for="event in categoryEvents"
@@ -45,19 +45,28 @@
   },
   async created() {
     try {
-      const eventData = await API.graphql(graphqlOperation(listEvents));
-      console.log('Event data:', eventData);
-      this.events = eventData.data.listEvents.items; // Populate the events array with the fetched data
-    } catch (error) {
-      console.error('Error fetching events:', error);
-    };
-    try {
       const categoriesData = await API.graphql(graphqlOperation(listCategories));
       console.log('Categories data:', categoriesData);
       this.categories = categoriesData.data.listCategories.items; // Populate categories array with the fetched data
     } catch (error) {
       console.error('Error fetching categories:', error);
     };
+    try {
+      const eventData = await API.graphql(graphqlOperation(listEvents));
+      console.log('Event data:', eventData);
+      this.events = eventData.data.listEvents.items; // Populate the events array with the fetched data
+    } catch (error) {
+      console.error('Error fetching events:', error);
+    };
+  },
+  methods: {
+    getCategoryName(categoryId) {
+      if (this.categories && this.categories.length > 0) {
+        const category = this.categories.find(cat => cat.id === categoryId);
+        return category ? category.name : 'Unknown Category';
+      }
+      return 'Loading...'; // or any other placeholder text
+    }
   },
   computed: {
     mainEvents() {
@@ -73,6 +82,7 @@
       this.events.forEach(event => {
         event.start_datetime = event.start_datetime.toString();
       });
+      //I want to show category name instead of category id but event doesn't have category name so I need to add it from category.name
       const categories = {};
       this.events.forEach(event => {
         if (!categories[event.eventCategoryId]) {
