@@ -12,14 +12,14 @@
       "AmplifyAppId": "d3s3tjtsnbykux"
     },
     "categories": {
-      "storage": {
-        "s3eventswebsitestorage9743023b": {}
-      },
       "api": {
         "EventsWebsite": {}
       },
       "auth": {
         "EventsWebsite": {}
+      },
+      "storage": {
+        "s3eventswebsitestorage9743023b": {}
       }
     }
   }
