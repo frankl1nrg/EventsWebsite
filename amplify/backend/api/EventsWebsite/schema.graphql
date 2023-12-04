@@ -5,34 +5,27 @@ type Category @model @auth(rules: [{allow: public}]) {
 
 type Reservation @model @auth(rules: [{allow: public}]) {
   id: ID!
-  userid: String!
-  eventid: String!
   datetime: AWSDateTime!
   User: User! @hasOne
-  eventID: ID! @index(name: "byEvent")
+  Event: Event @hasOne
 }
 
 type User @model @auth(rules: [{allow: public}]) {
   id: ID!
-  userid: String
   name: String
   lastName: String
-  email: String
+  email: String!
 }
 
 type Event @model @auth(rules: [{allow: public}]) {
   id: ID!
-  userid: ID!
-  description: String
+  description: String!
   start_datetime: AWSDateTime!
   end_datetime: AWSDateTime!
-  location: [AWSJSON]
-  ticketAvailability: Int
-  imageURL: String
+  location: String
+  ticketAvailability: Int!
+  imageURL: String!
   title: String!
-  category: String!
-  User: User @hasOne
-  Reservations: [Reservation] @hasMany(indexName: "byEvent", fields: ["id"])
-  Category: Category @hasOne
-}
- 
+  User: User! @hasOne
+  Category: Category! @hasOne
+} 
