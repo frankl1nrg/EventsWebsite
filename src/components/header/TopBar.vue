@@ -149,4 +149,7 @@ button:hover {
     margin: 0 auto;
 }
 
+button{
+    margin-right: 5px;
+}
 </style>
