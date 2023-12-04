@@ -9,7 +9,7 @@ export const user = ref(null);
 // Function to check if the user is authenticated
 const checkUser = async () => {
   try {
-      const currentUser = await Auth.currentAuthenticatedUser();
+      const currentUser = await Auth.currentUserInfo();
       user.value = currentUser;
       console.log(user);
   } catch (error) {
@@ -21,15 +21,20 @@ const checkUser = async () => {
 checkUser();
 
 // Function to store user in the database
-export const storeUserInDB = async (userData) => {
-  console.log('User data:', userData);
-
-  const input = {
-    id: userData.user.username,
-    email: userData.user.username,
-  };
-
+export const storeUserInDB = async () => {
   try {
+    const userData = await Auth.currentUserInfo();
+    console.log('Userrrrr data:', userData);
+    // Access user attributes, assuming custom attributes are used
+    const input = {
+      id: userData.attributes.email, // Username as ID
+      email: userData.attributes.email, // Email from attributes
+      name: userData.attributes.name, // Custom attribute for name
+      lastName: userData.attributes.family_name // Custom attribute for last name
+    };
+
+    console.log('User data:', input);
+
     const newUser = await API.graphql(graphqlOperation(createUserMutation, { input }));
     console.log('User stored in DB:', newUser);
   } catch (error) {
@@ -48,7 +53,7 @@ export const setupAuthListener = (onAuthEvent) => {
       if (data.payload.event === 'signUp') {
         // Store the user in the database when the user signs up
         console.log('User signed up:', data.payload.data);
-        storeUserInDB(data.payload.data);
+        storeUserInDB();
       }
       if (data.payload.event === 'signOut') {
         // Update the user state when the user signs out
