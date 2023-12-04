@@ -27,8 +27,8 @@ const router = createRouter({
       component: EditEvent
     },
     {
-      path: '/eventInfo',
-      name: 'Event Info',
+      path: '/event/:id',
+      name: 'EventInfo',
       component: EventInfo
     },
     {
