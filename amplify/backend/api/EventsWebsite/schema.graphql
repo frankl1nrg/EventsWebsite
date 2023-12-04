@@ -28,5 +28,4 @@ type Event @model @auth(rules: [{allow: public}]) {
   title: String!
   User: User! @hasOne
   Category: Category! @hasOne
-}
- 
+} 
