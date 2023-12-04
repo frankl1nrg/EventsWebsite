@@ -192,4 +192,8 @@
   background-color: #007bff;
   color: white;
 }
+
+label{
+  color: black;
+}
 </style>
