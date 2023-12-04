@@ -79,10 +79,8 @@ setup() {
   }
 
   .event-card-container {
-      display: grid;;
-      flex-direction: row;
-      flex-wrap: nowrap; /* Prevent wrapping onto new lines */
-      overflow-x: auto; /* Add horizontal scrollbar */
+      display: flex;
+      
       gap: 20px; /* Optional: Adds space between cards */
       margin: 20px;
       /* Additional styling as needed */
