@@ -51,7 +51,7 @@
             <h1 @click="redirectToPath('/')">TicketPort</h1>
         </div>
         <div class="welcome" >
-            <p v-if="user">Welcome back, {{ user.attributes.email }}!</p>
+            <p v-if="user">Welcome back, {{ user.attributes.name }}!</p>
         </div>
     </div>
     <div class="center-top-bar">
