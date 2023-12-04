@@ -1,9 +1,7 @@
 <script setup>
     import { ref, onMounted, onUnmounted } from 'vue';
-    import { SearchBar, PopUp, UserMenu } from './';
+    import { SearchBar, PopUp, UserMenu, CustomAuth } from './';
     import { useRouter } from 'vue-router';
-    import { Authenticator } from '@aws-amplify/ui-vue';
-    import "@aws-amplify/ui-vue/styles.css";
     import { Auth } from 'aws-amplify';
     import { setupAuthListener, user } from '@/services/UserService';
 
@@ -75,8 +73,8 @@
             @click="() => TogglePopup('loginButtonTrigger')"
         >Close</button>
         <!-- Content for login popup -->
-        <authenticator>
-        </authenticator>
+        <CustomAuth>
+        </CustomAuth>
     </PopUp>
 
     <!-- Menu Popup -->
