@@ -8,7 +8,7 @@
         <h2>{{ event.location }}</h2>
         <h2>{{ event.category }}</h2>
         <h2>Reservations Left: {{ event.ticketAvailability }}</h2>
-        <button class="reservation-button" @click="createReservation">Reserve Seats</button>
+        <button v-if="isLoggedIn" class="reservation-button" @click="createReservation">Reserve Seats</button>
 
       <!-- Display other event details -->
     </div>
@@ -18,18 +18,19 @@
   </template>
   
   <script>
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, watch } from 'vue';
   import { useRoute } from 'vue-router';
   import { API, graphqlOperation } from 'aws-amplify';
   import { getEvent } from '../graphql/queries';
   import { createReservation } from '../graphql/mutations';
-  import { user } from '@/services/UserService'; // Import user service
+  import { setupAuthListener, user } from '@/services/UserService'; // Import user service
   
   export default {
     name: 'EventInfo',
     setup() {
       const route = useRoute();
       const event = ref(null);
+      const isLoggedIn = ref(false);
 
       //turn the event.start_datetime into a date object
     
@@ -62,10 +63,19 @@
           console.error('Error creating reservation:', error);
         };
     };
+    watch(user, async (newValue) => {
+        if (newValue && newValue.id) {
+          isLoggedIn.value = true;
+        } else {
+          isLoggedIn.value = false;
+        }
+      });
   
       onMounted(fetchEventDetails);
-  
-      return { event, createReservation };
+
+      
+
+      return { event, createReservation, isLoggedIn};
     }
   };
 </script>
