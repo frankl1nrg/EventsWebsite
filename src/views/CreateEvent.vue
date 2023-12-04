@@ -1,6 +1,6 @@
 <template>
     <div class ="not-logged-in">
-        <img src="public/images/notLoggedInCreateEvent.png" alt="not logged in" class="center">
+        <img src="src/views/images/notLoggedInCreateEvent.png" alt="not logged in" class="center">
     </div>
 </template>
 
