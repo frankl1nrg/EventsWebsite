@@ -9,48 +9,48 @@
       <!-- Display not logged in message -->
       <img src="/notLoggedInMyEvents.png" alt="Not Logged In" class="center">
     </div>
-  </template>
+</template>
   
 
 <script>
-import { ref, onMounted } from 'vue';
-import { setupAuthListener, user } from '@/services/UserService';
-import EventCard from '../components/body/EventCard.vue';
-import { API, graphqlOperation } from 'aws-amplify';
-import { listEvents } from '../graphql/queries';
+  import { ref, onMounted } from 'vue';
+  import { setupAuthListener, user } from '@/services/UserService';
+  import EventCard from '../components/body/EventCard.vue';
+  import { API, graphqlOperation } from 'aws-amplify';
+  import { listEvents } from '../graphql/queries';
 
-export default {
-  components: {
-    EventCard,
-  },
-  setup() {
-    const isLoggedIn = ref(false);
-    const userEvents = ref([]);
+  export default {
+    components: {
+      EventCard,
+    },
+    setup() {
+      const isLoggedIn = ref(false);
+      const userEvents = ref([]);
 
-    const fetchUserEvents = async () => {
-      if (user.value) {
-        try {
-          const eventData = await API.graphql(graphqlOperation(listEvents, {
-            filter: { userId: { eq: user.value.id } }
-          }));
-          userEvents.value = eventData.data.listEvents.items;
-        } catch (error) {
-          console.error('Error fetching events:', error);
+      const fetchUserEvents = async () => {
+        if (user.value) {
+          try {
+            const eventData = await API.graphql(graphqlOperation(listEvents, {
+              filter: { userId: { eq: user.value.id } }
+            }));
+            userEvents.value = eventData.data.listEvents.items;
+          } catch (error) {
+            console.error('Error fetching events:', error);
+          }
         }
-      }
-    };
+      };
 
-    onMounted(async () => {
-      await setupAuthListener();
-      isLoggedIn.value = user.value !== null;
-      if (isLoggedIn.value) {
-        await fetchUserEvents();
-      }
-    });
+      onMounted(async () => {
+        await setupAuthListener();
+        isLoggedIn.value = user.value !== null;
+        if (isLoggedIn.value) {
+          await fetchUserEvents();
+        }
+      });
 
-    return { isLoggedIn, userEvents };
-  }
-};
+      return { isLoggedIn, userEvents };
+    }
+  };
 </script>
 
 <style>

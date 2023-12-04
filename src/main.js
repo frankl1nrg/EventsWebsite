@@ -6,7 +6,6 @@ import router from './router'
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
 import AmplifyVue from '@aws-amplify/ui-vue';
-import { ThemeProvider } from '@aws-amplify/ui-react';
 
 Amplify.configure(awsExports);
 

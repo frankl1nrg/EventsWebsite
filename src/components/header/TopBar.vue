@@ -3,7 +3,7 @@
     import { SearchBar, PopUp, UserMenu, CustomAuth } from './';
     import { useRouter } from 'vue-router';
     import { Auth } from 'aws-amplify';
-    import { setupAuthListener, user } from '@/services/UserService';
+    import { setupAuthListener, user, checkUser } from '@/services/UserService';
 
     const router = useRouter();
   
@@ -28,17 +28,18 @@
     let removeAuthListener;
 
     onMounted(() => {
-    removeAuthListener = setupAuthListener((eventType) => {
-        if (eventType === 'signIn') {
-            TogglePopup('loginButtonTrigger');
-        }
-    });
-    });
+        checkUser();
+        removeAuthListener = setupAuthListener((eventType) => {
+            if (eventType === 'signIn') {
+                TogglePopup('loginButtonTrigger');
+            }
+        });
+        });
 
     onUnmounted(() => {
-    if (removeAuthListener) {
-        removeAuthListener();
-    }
+        if (removeAuthListener) {
+            removeAuthListener();
+        }
     });
 
 </script>
