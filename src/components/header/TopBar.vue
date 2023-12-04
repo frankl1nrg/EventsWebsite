@@ -29,7 +29,7 @@
 
     onMounted(() => {
     removeAuthListener = setupAuthListener((eventType) => {
-        if (eventType === 'signIn' || eventType === 'signUp') {
+        if (eventType === 'signIn') {
             TogglePopup('loginButtonTrigger');
         }
     });

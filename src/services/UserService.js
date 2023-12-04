@@ -23,8 +23,7 @@ checkUser();
 // Function to store user in the database
 export const storeUserInDB = async () => {
   try {
-    const userData = await Auth.currentUserInfo();
-    console.log('Userrrrr data:', userData);
+    const userData = await Auth.currentAuthenticatedUser();
     // Access user attributes, assuming custom attributes are used
     const input = {
       id: userData.attributes.email, // Username as ID
@@ -48,15 +47,17 @@ export const setupAuthListener = (onAuthEvent) => {
       if (data.payload.event === 'signIn' || data.payload.event === 'signUp') {
         // Update the user state when the user signs in or signs up
         checkUser();
+        // Store the user in the database when the user signs-ins
+        storeUserInDB();
+        // Send hub event to the parent component when the user signs in or signs up
         onAuthEvent(data.payload.event, data.payload.data);
       }
       if (data.payload.event === 'signUp') {
-        // Store the user in the database when the user signs up
         console.log('User signed up:', data.payload.data);
-        storeUserInDB();
       }
       if (data.payload.event === 'signOut') {
         // Update the user state when the user signs out
+        console.log('User signed out');
         user.value = null;
       }
     });
