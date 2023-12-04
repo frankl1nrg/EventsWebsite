@@ -32,7 +32,7 @@
     data() {
     return {
       events: [], // Initialize events as an empty array
-      mainEventIds: ["77db75f6-83f1-426f-9dd7-078cewewewed715ae31", "33310d38-4072-430a-9a4d-4e4fc7f4ee30", "f3721176-57da-4861-b58f-5f5d21eb8aff"], // ID of main events
+      mainEventIds: ["20a76d4e-747a-4422-9cfa-ae83ed412e7", "33310d38-4072-430a-9a4d-4e4fc7f4ee30", "f3721176-57da-4861-b58f-5f5d21eb8aff"], // ID of main events
       slickSettings: {
         dots: true,
         autoplay: true,
